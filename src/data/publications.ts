@@ -40,9 +40,10 @@ export const publications: Publication[] = [
     title:
       "Software in the Manufacturing Industry: A Review of Security Challenges and Implications",
     year: 2025,
-    venue: "Solutions and Technologies for Responsible Digitalization (pp. 293–311)",
+    venue: "Solutions and Technologies for Responsible Digitalization",
+    pages: "293–311",
     publisher: "Springer Nature Switzerland",
-    location: "Cham",
+    location: "Springer Nature Switzerland, Cham, Switzerland",
     note: "Revised and extended version of the WI 2023 paper",
     authors: "Landeck, Y.; Balta, D.; Wimmer, M.; Knierim, C.",
   },
