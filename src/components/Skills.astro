@@ -1,0 +1,86 @@
+---
+interface SkillGroup {
+  label: string;
+  items: string[];
+}
+
+const groups: SkillGroup[] = [
+  {
+    label: "Technical",
+    items: [
+      "Docker",
+      "Kubernetes",
+      "Python",
+      "Go",
+      "JavaScript",
+      "Java",
+      "C#",
+      "Git",
+      "Databases (e.g. MySQL)",
+      "Web servers (e.g. nginx, Flask)",
+      "HTML / CSS",
+      "Ontologies & Knowledge Graphs (RDF/OWL, SPARQL)",
+      "Unity",
+      "SAP ABAP",
+      "Bash",
+      "Linux",
+      "Windows",
+      "LaTeX",
+      "Microsoft Office",
+    ],
+  },
+  {
+    label: "Methodological",
+    items: [
+      "DevOps",
+      "Platform Engineering",
+      "CI/CD",
+      "Container Security",
+      "DevSecOps",
+      "Knowledge Representation",
+      "Data Science",
+      "Data-driven Decision-making",
+      "Agentic AI Concepts",
+      "LLM Integration Methods",
+      "Workshop Facilitation",
+      "Presentation Skills",
+    ],
+  },
+  {
+    label: "Teaching",
+    items: [
+      "Supervision of Bachelor's & Master's theses in Software Engineering and Security (TU Munich)",
+      "Supervision of a programming lab on Agentic AI Systems (TU Munich)",
+    ],
+  },
+  {
+    label: "Languages",
+    items: ["German (native)", "English (C2)", "Spanish (A2)", "French (A1)"],
+  },
+];
+---
+
+<section id="skills" class="py-20 scroll-mt-16 bg-gray-50">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6">
+    <h2 class="text-2xl font-bold text-gray-900 mb-12 pl-4 border-l-4 border-blue-600">Skills</h2>
+
+    <div class="space-y-10">
+      {
+        groups.map((group) => (
+          <div>
+            <h3 class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-3">
+              {group.label}
+            </h3>
+            <div class="flex flex-wrap gap-2">
+              {group.items.map((item) => (
+                <span class="px-3 py-1 bg-white border border-gray-200 rounded-full text-sm text-gray-700 shadow-sm">
+                  {item}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

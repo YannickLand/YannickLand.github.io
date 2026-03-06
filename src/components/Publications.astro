@@ -1,0 +1,94 @@
+---
+import { publications, type Publication } from "../data/publications";
+
+// Group by year, descending
+const grouped = publications.reduce(
+  (acc: Record<number, Publication[]>, pub) => {
+    (acc[pub.year] ??= []).push(pub);
+    return acc;
+  },
+  {}
+);
+const years = Object.keys(grouped)
+  .map(Number)
+  .sort((a, b) => b - a);
+---
+
+<section id="publications" class="py-20 scroll-mt-16">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6">
+    <h2 class="text-2xl font-bold text-gray-900 mb-12 pl-4 border-l-4 border-blue-600">
+      Publications
+    </h2>
+
+    <div class="space-y-10">
+      {
+        years.map((year) => (
+          <div>
+            <h3 class="text-sm font-semibold text-blue-600 uppercase tracking-widest mb-5">
+              {year}
+            </h3>
+            <div class="space-y-6 pl-4 border-l-2 border-blue-100">
+              {grouped[year].map((pub) => {
+                const href = pub.doi ? `https://doi.org/${pub.doi}` : pub.url;
+                return (
+                  <article class="pb-6 border-b border-gray-100 last:border-0 last:pb-0">
+                    <h4 class="font-medium text-gray-900 leading-snug">
+                      {href ? (
+                        <a
+                          href={href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="hover:text-blue-600 transition-colors"
+                        >
+                          {pub.title}
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="inline-block ml-1 w-3 h-3 opacity-50"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            aria-hidden="true"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                            />
+                          </svg>
+                        </a>
+                      ) : (
+                        pub.title
+                      )}
+                    </h4>
+                    <p class="mt-1 text-sm text-gray-600">
+                      {pub.venue}
+                      {pub.location && `, ${pub.location}`}
+                      {pub.pages && `, pp. ${pub.pages}`}
+                    </p>
+                    <p class="mt-0.5 text-xs text-gray-500">{pub.authors}</p>
+                    {pub.note && (
+                      <p class="mt-1 text-xs text-gray-400 italic">{pub.note}</p>
+                    )}
+                  </article>
+                );
+              })}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <p class="mt-10 text-sm text-gray-500">
+      See also my{" "}
+      <a
+        href="https://www.researchgate.net/profile/Yannick-Landeck"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-blue-600 hover:underline"
+      >
+        ResearchGate profile
+      </a>.
+    </p>
+  </div>
+</section>

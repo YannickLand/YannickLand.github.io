@@ -1,0 +1,108 @@
+---
+// About / Hero section – static content
+---
+
+<section id="about" class="py-20 scroll-mt-16">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6">
+    <div class="flex flex-col-reverse sm:flex-row items-start gap-10">
+      <!-- Text content -->
+      <div class="flex-1">
+        <h1 class="text-4xl font-bold text-gray-900 leading-tight tracking-tight">
+          Yannick Landeck
+        </h1>
+        <p class="mt-2 text-lg text-blue-600 font-medium">
+          Software Engineer &amp; PhD Researcher
+        </p>
+        <p class="mt-5 text-gray-600 leading-relaxed max-w-xl">
+          I am a software engineer with a passion for building modern, secure software solutions.
+          Currently completing my PhD at TU Munich, I specialise in DevOps, containerised
+          architectures, and security risk assessment in operational technology (OT) environments.
+          I enjoy working in interdisciplinary teams, taking ownership, and finding pragmatic
+          solutions to complex technical challenges. In my free time, I play snooker and enjoy
+          hiking in the mountains.
+        </p>
+
+        <!-- Social links -->
+        <div class="mt-7 flex flex-wrap items-center gap-4">
+          <!-- LinkedIn -->
+          <a
+            href="https://www.linkedin.com/in/yannick-landeck-a58a2b206"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-4 h-4"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+              ></path>
+            </svg>
+            LinkedIn
+          </a>
+
+          <!-- ResearchGate -->
+          <a
+            href="https://www.researchgate.net/profile/Yannick-Landeck"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors"
+          >
+            <span
+              class="inline-flex items-center justify-center w-4 h-4 text-[9px] font-bold bg-teal-500 text-white rounded"
+              aria-hidden="true">RG</span
+            >
+            ResearchGate
+          </a>
+
+          <!-- Email (obfuscated) -->
+          <a
+            id="about-email"
+            href="#"
+            class="inline-flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-4 h-4"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+              aria-hidden="true"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+              ></path>
+            </svg>
+            Email
+          </a>
+        </div>
+      </div>
+
+      <!-- Profile photo -->
+      <div class="flex-shrink-0 self-center sm:self-start">
+        <img
+          src="/avatar.jpg"
+          alt="Yannick Landeck"
+          width="176"
+          height="176"
+          class="w-36 h-36 sm:w-44 sm:h-44 rounded-full object-cover ring-4 ring-gray-100 shadow-md"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const aboutEmail = document.getElementById("about-email");
+  if (aboutEmail) {
+    const enc = "ed.xmg@kcednaly";
+    aboutEmail.setAttribute("href", "mailto:" + enc.split("").reverse().join(""));
+  }
+</script>

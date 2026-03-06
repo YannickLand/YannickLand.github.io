@@ -1,0 +1,93 @@
+---
+interface ExperienceEntry {
+  role: string;
+  org: string;
+  location: string;
+  period: string;
+  note?: string;
+  bullets?: string[];
+}
+
+const entries: ExperienceEntry[] = [
+  {
+    role: "Research Associate",
+    org: "fortiss GmbH – Research Institute of the Free State of Bavaria",
+    location: "Munich, Germany",
+    period: "2021 – present",
+    note: "Research group: Platform Engineering",
+    bullets: [
+      "Multi-year industry collaboration with Siemens AG to implement container security approaches",
+      "Moderation of workshops with SMEs on data-driven process optimisation",
+      "Design and implementation of data platforms in the finance, energy, and food industries",
+    ],
+  },
+  {
+    role: "Student Research Assistant",
+    org: "Fraunhofer IEM",
+    location: "Paderborn, Germany",
+    period: "2018 – 2021",
+    note: "Research group: Industrial Data Analytics",
+  },
+  {
+    role: "Application Developer",
+    org: "Lenze Group",
+    location: "Hameln, Germany",
+    period: "2016 – 2017",
+    note: "Department: Application development for production systems",
+  },
+  {
+    role: "Dual Study Programme in Information Systems",
+    org: "Lenze Group",
+    location: "Hameln, Germany",
+    period: "2013 – 2016",
+    note: "Department: Application development for SAP systems",
+  },
+];
+---
+
+<section id="experience" class="py-20 scroll-mt-16 bg-gray-50">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6">
+    <h2 class="text-2xl font-bold text-gray-900 mb-12 pl-4 border-l-4 border-blue-600">
+      Work Experience
+    </h2>
+
+    <div class="space-y-0">
+      {
+        entries.map((entry, i) => (
+          <div class="grid grid-cols-[14px_1fr] gap-5">
+            <!-- Timeline dot + line -->
+            <div class="flex flex-col items-center">
+              <div class="w-3 h-3 rounded-full bg-blue-600 mt-1.5 shrink-0 ring-2 ring-gray-50" />
+              {i < entries.length - 1 && <div class="w-px bg-gray-300 grow mt-1.5" />}
+            </div>
+
+            <!-- Content -->
+            <div class="pb-10">
+              <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-1">
+                <div>
+                  <h3 class="font-semibold text-gray-900">{entry.role}</h3>
+                  <p class="text-sm text-gray-600">{entry.org}</p>
+                  <p class="text-xs text-gray-500 mt-0.5">
+                    {entry.location}
+                    {entry.note && ` · ${entry.note}`}
+                  </p>
+                </div>
+                <span class="text-sm text-gray-500 whitespace-nowrap">{entry.period}</span>
+              </div>
+              {entry.bullets && (
+                <ul class="mt-3 space-y-1.5">
+                  {entry.bullets.map((b) => (
+                    <li class="flex gap-2.5 text-sm text-gray-600">
+                      <span class="mt-2 w-1.5 h-1.5 rounded-full bg-gray-400 shrink-0" />
+                      {b}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

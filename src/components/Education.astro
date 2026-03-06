@@ -1,0 +1,89 @@
+---
+interface EducationEntry {
+  degree: string;
+  institution: string;
+  location: string;
+  period: string;
+  details?: string[];
+}
+
+const entries: EducationEntry[] = [
+  {
+    degree: "Dr. rer. nat. / PhD in Computer Science",
+    institution: "Technical University of Munich",
+    location: "Munich, Germany",
+    period: "2023 – present",
+    details: [
+      "Doctoral topic: \u201CSecurity Risk Identification for Container Deployments in Operational Technology Contexts\u201D",
+      "Chair of Software and Systems Engineering, Prof. Pretschner",
+    ],
+  },
+  {
+    degree: "M.Sc. in Information Systems",
+    institution: "University of Paderborn",
+    location: "Paderborn, Germany",
+    period: "2017 – 2020",
+    details: [
+      "Master\u2019s thesis: \u201CMethodology for Introducing AI-based Production Planning Systems in Enterprises\u201D",
+      "Study abroad (Winter 2019) at the University of Eastern Finland, Kuopio",
+    ],
+  },
+  {
+    degree: "B.Sc. in Information Systems",
+    institution: "Hochschule Weserbergland",
+    location: "Hameln, Germany",
+    period: "2013 – 2016",
+    details: ["Dual study programme with a focus on application development"],
+  },
+  {
+    degree: "General Higher Education Entrance Qualification (Abitur)",
+    institution: "Städtisches Gymnasium Löhne",
+    location: "Löhne, Germany",
+    period: "2005 – 2013",
+  },
+];
+---
+
+<section id="education" class="py-20 scroll-mt-16">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6">
+    <h2 class="text-2xl font-bold text-gray-900 mb-12 pl-4 border-l-4 border-blue-600">
+      Education
+    </h2>
+
+    <div class="space-y-0">
+      {
+        entries.map((entry, i) => (
+          <div class="grid grid-cols-[14px_1fr] gap-5">
+            <!-- Timeline dot + line -->
+            <div class="flex flex-col items-center">
+              <div class="w-3 h-3 rounded-full bg-blue-600 mt-1.5 shrink-0 ring-2 ring-white" />
+              {i < entries.length - 1 && <div class="w-px bg-gray-200 grow mt-1.5" />}
+            </div>
+
+            <!-- Content -->
+            <div class="pb-10">
+              <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-1">
+                <div>
+                  <h3 class="font-semibold text-gray-900">{entry.degree}</h3>
+                  <p class="text-sm text-gray-600">{entry.institution}</p>
+                  <p class="text-xs text-gray-500 mt-0.5">{entry.location}</p>
+                </div>
+                <span class="text-sm text-gray-500 whitespace-nowrap">{entry.period}</span>
+              </div>
+              {entry.details && (
+                <ul class="mt-3 space-y-1.5">
+                  {entry.details.map((d) => (
+                    <li class="flex gap-2.5 text-sm text-gray-600">
+                      <span class="mt-2 w-1.5 h-1.5 rounded-full bg-gray-400 shrink-0" />
+                      {d}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,175 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Yannick Landeck – Software Engineer & PhD Researcher",
+  description = "Personal website of Yannick Landeck, software engineer and PhD researcher specialising in DevOps, container security, and platform engineering.",
+} = Astro.props;
+
+import "../styles/global.css";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+
+    <!-- OpenGraph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://yannickland.github.io" />
+    <meta property="og:image" content="https://yannickland.github.io/avatar.jpg" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body class="bg-white text-gray-800 antialiased">
+    <!-- Skip to content -->
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-blue-600 focus:text-white focus:px-4 focus:py-2 focus:rounded"
+    >
+      Skip to content
+    </a>
+
+    <!-- Navbar -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-gray-100">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16">
+        <a
+          href="/#about"
+          class="font-semibold text-gray-900 hover:text-blue-600 transition-colors"
+        >
+          Yannick Landeck
+        </a>
+
+        <!-- Desktop nav -->
+        <nav class="hidden sm:flex items-center gap-6 text-sm text-gray-500">
+          <a href="/#about" class="hover:text-blue-600 transition-colors">About</a>
+          <a href="/#experience" class="hover:text-blue-600 transition-colors">Experience</a>
+          <a href="/#education" class="hover:text-blue-600 transition-colors">Education</a>
+          <a href="/#skills" class="hover:text-blue-600 transition-colors">Skills</a>
+          <a href="/#publications" class="hover:text-blue-600 transition-colors">Publications</a>
+        </nav>
+
+        <!-- Mobile menu button -->
+        <button
+          id="menu-btn"
+          aria-label="Toggle navigation menu"
+          aria-expanded="false"
+          class="sm:hidden p-2 rounded-md text-gray-500 hover:text-gray-900 hover:bg-gray-100 transition-colors"
+        >
+          <svg
+            id="icon-open"
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-5 h-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <svg
+            id="icon-close"
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-5 h-5 hidden"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Mobile menu -->
+      <div id="mobile-menu" class="hidden sm:hidden bg-white border-t border-gray-100">
+        <nav class="max-w-4xl mx-auto px-4 py-4 flex flex-col gap-3 text-sm text-gray-600">
+          <a href="/#about" class="py-1 hover:text-blue-600 transition-colors">About</a>
+          <a href="/#experience" class="py-1 hover:text-blue-600 transition-colors">Experience</a>
+          <a href="/#education" class="py-1 hover:text-blue-600 transition-colors">Education</a>
+          <a href="/#skills" class="py-1 hover:text-blue-600 transition-colors">Skills</a>
+          <a href="/#publications" class="py-1 hover:text-blue-600 transition-colors">Publications</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-16 border-t border-gray-200">
+      <div
+        class="max-w-4xl mx-auto px-4 sm:px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-gray-500"
+      >
+        <p>© 2026 Yannick Landeck</p>
+        <div class="flex items-center gap-6">
+          <a
+            href="https://www.linkedin.com/in/yannick-landeck-a58a2b206"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hover:text-blue-600 transition-colors">LinkedIn</a
+          >
+          <a
+            href="https://www.researchgate.net/profile/Yannick-Landeck"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hover:text-blue-600 transition-colors">ResearchGate</a
+          >
+          <a id="footer-email" href="#" class="hover:text-blue-600 transition-colors">Email</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Mobile menu toggle
+      const menuBtn = document.getElementById("menu-btn");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const iconOpen = document.getElementById("icon-open");
+      const iconClose = document.getElementById("icon-close");
+
+      menuBtn?.addEventListener("click", () => {
+        const isHidden = mobileMenu?.classList.contains("hidden");
+        mobileMenu?.classList.toggle("hidden", !isHidden);
+        iconOpen?.classList.toggle("hidden", isHidden ?? false);
+        iconClose?.classList.toggle("hidden", !isHidden);
+        menuBtn.setAttribute("aria-expanded", isHidden ? "true" : "false");
+      });
+
+      // Close mobile menu when a nav link is clicked
+      mobileMenu?.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          mobileMenu.classList.add("hidden");
+          iconOpen?.classList.remove("hidden");
+          iconClose?.classList.add("hidden");
+          menuBtn?.setAttribute("aria-expanded", "false");
+        });
+      });
+
+      // Email obfuscation: ylandeck@gmx.de reversed = ed.xmg@kcednaly
+      const footerEmail = document.getElementById("footer-email");
+      if (footerEmail) {
+        const enc = "ed.xmg@kcednaly";
+        footerEmail.setAttribute("href", "mailto:" + enc.split("").reverse().join(""));
+      }
+    </script>
+  </body>
+</html>
