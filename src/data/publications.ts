@@ -9,6 +9,7 @@ export interface Publication {
   url?: string;
   pages?: string;
   note?: string;
+  preprint?: string;
   authors: string;
 }
 
@@ -23,6 +24,8 @@ export const publications: Publication[] = [
     publisher: "ACM",
     location: "Rio de Janeiro, Brasil",
     doi: "10.1145/3786583.3786875",
+    note: "DOI reserved; paper forthcoming",
+    preprint: "https://arxiv.org/abs/2601.04010",
     authors: "Landeck, Y.; Balta, D.; Wimmer, M.; Knierim, C.",
   },
   {
@@ -44,7 +47,8 @@ export const publications: Publication[] = [
     pages: "293–311",
     publisher: "Springer Nature Switzerland",
     location: "Springer Nature Switzerland, Cham, Switzerland",
-    note: "Revised and extended version of the WI 2023 paper",
+    url: "https://link.springer.com/chapter/10.1007/978-3-031-80122-8_19",
+    note: "Re-publication of the WI 2023 proceedings paper at Springer Nature Link",
     authors: "Landeck, Y.; Balta, D.; Wimmer, M.; Knierim, C.",
   },
   {

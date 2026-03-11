@@ -1,26 +1,31 @@
 ---
+type Detail = string | { text: string; url: string };
+
 interface EducationEntry {
   degree: string;
   institution: string;
+  institutionUrl?: string;
   location: string;
   period: string;
-  details?: string[];
+  details?: Detail[];
 }
 
 const entries: EducationEntry[] = [
   {
     degree: "Dr. rer. nat. / PhD in Computer Science",
     institution: "Technical University of Munich",
+    institutionUrl: "https://www.tum.de/",
     location: "Munich, Germany",
     period: "2023 – present",
     details: [
       "Doctoral topic: \u201CKnowledge Augmentation of Security Risk Identification for Container Deployments in Operational Technology Contexts\u201D",
-      "Chair of Software and Systems Engineering, Prof. Pretschner",
+      { text: "Chair of Software and Systems Engineering, Prof. Pretschner", url: "https://www.cs.cit.tum.de/sse/startseite/" },
     ],
   },
   {
     degree: "M.Sc. in Information Systems",
     institution: "University of Paderborn",
+    institutionUrl: "https://www.uni-paderborn.de/",
     location: "Paderborn, Germany",
     period: "2017 – 2020",
     details: [
@@ -31,13 +36,18 @@ const entries: EducationEntry[] = [
   {
     degree: "B.Sc. in Information Systems",
     institution: "Hochschule Weserbergland",
+    institutionUrl: "https://www.hsw-hameln.de/",
     location: "Hameln, Germany",
     period: "2013 – 2016",
-    details: ["Dual study programme with a focus on application development"],
+    details: [
+      "Dual study programme with a focus on application development",
+      "Bachelor\u2019s thesis: \u201CAnalysis and Evaluation of Self-Service Business Intelligence Tools for Reporting within the Lenze Group\u201D",
+    ],
   },
   {
     degree: "General Higher Education Entrance Qualification (Abitur)",
     institution: "Städtisches Gymnasium Löhne",
+    institutionUrl: "https://www.loehne.de/Gymnasium/",
     location: "Löhne, Germany",
     period: "2005 – 2013",
   },
@@ -65,7 +75,11 @@ const entries: EducationEntry[] = [
               <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-1">
                 <div>
                   <h3 class="font-semibold text-gray-900">{entry.degree}</h3>
-                  <p class="text-sm text-gray-600">{entry.institution}</p>
+                  <p class="text-sm text-gray-600">
+                    {entry.institutionUrl ? (
+                      <a href={entry.institutionUrl} target="_blank" rel="noopener noreferrer" class="hover:text-blue-600 transition-colors">{entry.institution}</a>
+                    ) : entry.institution}
+                  </p>
                   <p class="text-xs text-gray-500 mt-0.5">{entry.location}</p>
                 </div>
                 <span class="text-sm text-gray-500 whitespace-nowrap">{entry.period}</span>
@@ -75,7 +89,9 @@ const entries: EducationEntry[] = [
                   {entry.details.map((d) => (
                     <li class="flex gap-2.5 text-sm text-gray-600">
                       <span class="mt-2 w-1.5 h-1.5 rounded-full bg-gray-400 shrink-0" />
-                      {d}
+                      {typeof d === "string" ? d : (
+                        <a href={d.url} target="_blank" rel="noopener noreferrer" class="hover:text-blue-600 transition-colors">{d.text}</a>
+                      )}
                     </li>
                   ))}
                 </ul>

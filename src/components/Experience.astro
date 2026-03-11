@@ -2,6 +2,7 @@
 interface ExperienceEntry {
   role: string;
   org: string;
+  orgUrl?: string;
   location: string;
   period: string;
   note?: string;
@@ -12,35 +13,55 @@ const entries: ExperienceEntry[] = [
   {
     role: "Research Associate",
     org: "fortiss GmbH – Research Institute of the Free State of Bavaria",
+    orgUrl: "https://www.fortiss.org/",
     location: "Munich, Germany",
     period: "2021 – present",
     note: "Research group: Platform Engineering",
     bullets: [
       "Multi-year industry collaboration with Siemens AG to implement container security approaches",
-      "Moderation of workshops with SMEs on data-driven process optimisation",
+      "Integration of ontology-based knowledge graphs and reasoning into critical workflows such as security risk assessment and compliance",
+      "Design and integration of AI agents into software engineering workflows including CI/CD pipeline design and quality assurance",
       "Design and implementation of data platforms in the finance, energy, and food industries",
+      "Moderation of workshops with SMEs on data-driven process optimisation",
     ],
   },
   {
     role: "Student Research Assistant",
     org: "Fraunhofer IEM",
+    orgUrl: "https://www.iem.fraunhofer.de/",
     location: "Paderborn, Germany",
     period: "2018 – 2021",
     note: "Research group: Industrial Data Analytics",
+    bullets: [
+      "Analysis of big data (operational and product data) in industry",
+      "Application of machine learning and artificial intelligence for businesses",
+      "Development of Python tools and web-based prototypes",
+    ],
   },
   {
     role: "Application Developer",
     org: "Lenze Group",
+    orgUrl: "https://www.lenze.com/en-de/",
     location: "Hameln, Germany",
     period: "2016 – 2017",
     note: "Department: Application development for production systems",
+    bullets: [
+      "Development and maintenance of production shopfloor systems",
+      "Support for purchasing and materials planning in SAP",
+      "ABAP programming in the context of materials management",
+    ],
   },
   {
     role: "Dual Study Programme in Information Systems",
     org: "Lenze Group",
+    orgUrl: "https://www.lenze.com/en-de/",
     location: "Hameln, Germany",
     period: "2013 – 2016",
     note: "Department: Application development for SAP systems",
+    bullets: [
+      "Support for SAP inventory management",
+      "Implementation of Business Intelligence interfaces using Java frameworks",
+    ],
   },
 ];
 ---
@@ -66,7 +87,11 @@ const entries: ExperienceEntry[] = [
               <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-1">
                 <div>
                   <h3 class="font-semibold text-gray-900">{entry.role}</h3>
-                  <p class="text-sm text-gray-600">{entry.org}</p>
+                  <p class="text-sm text-gray-600">
+                    {entry.orgUrl ? (
+                      <a href={entry.orgUrl} target="_blank" rel="noopener noreferrer" class="hover:text-blue-600 transition-colors">{entry.org}</a>
+                    ) : entry.org}
+                  </p>
                   <p class="text-xs text-gray-500 mt-0.5">
                     {entry.location}
                     {entry.note && ` · ${entry.note}`}
