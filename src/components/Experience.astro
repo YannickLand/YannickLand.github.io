@@ -1,4 +1,13 @@
 ---
+import ExternalLinkIcon from "./ExternalLinkIcon.astro";
+
+interface Props {
+  lang?: "en" | "de";
+}
+
+const { lang = "en" } = Astro.props;
+const isDE = lang === "de";
+
 interface ExperienceEntry {
   role: string;
   org: string;
@@ -9,67 +18,127 @@ interface ExperienceEntry {
   bullets?: string[];
 }
 
-const entries: ExperienceEntry[] = [
-  {
-    role: "Research Associate",
-    org: "fortiss GmbH – Research Institute of the Free State of Bavaria",
-    orgUrl: "https://www.fortiss.org/",
-    location: "Munich, Germany",
-    period: "2021 – present",
-    note: "Research group: Platform Engineering",
-    bullets: [
-      "Multi-year industry collaboration with Siemens AG to implement container security approaches",
-      "Integration of ontology-based knowledge graphs and reasoning into critical workflows such as security risk assessment and compliance",
-      "Design and integration of AI agents into software engineering workflows including CI/CD pipeline design and quality assurance",
-      "Design and implementation of data platforms in the finance, energy, and food industries",
-      "Moderation of workshops with SMEs on data-driven process optimisation",
-    ],
-  },
-  {
-    role: "Student Research Assistant",
-    org: "Fraunhofer IEM",
-    orgUrl: "https://www.iem.fraunhofer.de/",
-    location: "Paderborn, Germany",
-    period: "2018 – 2021",
-    note: "Research group: Industrial Data Analytics",
-    bullets: [
-      "Analysis of big data (operational and product data) in industry",
-      "Application of machine learning and artificial intelligence for businesses",
-      "Development of Python tools and web-based prototypes",
-    ],
-  },
-  {
-    role: "Application Developer",
-    org: "Lenze Group",
-    orgUrl: "https://www.lenze.com/en-de/",
-    location: "Hameln, Germany",
-    period: "2016 – 2017",
-    note: "Department: Application development for production systems",
-    bullets: [
-      "Development and maintenance of production shopfloor systems",
-      "Support for purchasing and materials planning in SAP",
-      "ABAP programming in the context of materials management",
-    ],
-  },
-  {
-    role: "Dual Study Programme in Information Systems",
-    org: "Lenze Group",
-    orgUrl: "https://www.lenze.com/en-de/",
-    location: "Hameln, Germany",
-    period: "2013 – 2016",
-    note: "Department: Application development for SAP systems",
-    bullets: [
-      "Support for SAP inventory management",
-      "Implementation of Business Intelligence interfaces using Java frameworks",
-    ],
-  },
-];
+const entries: ExperienceEntry[] = isDE
+  ? [
+      {
+        role: "Wissenschaftlicher Mitarbeiter",
+        org: "fortiss GmbH – Landesforschungsinstitut des Freistaats Bayern",
+        orgUrl: "https://www.fortiss.org/",
+        location: "München, Deutschland",
+        period: "2021 – heute",
+        note: "Forschungsgruppe: Platform Engineering",
+        bullets: [
+          "Mehrjährige Industriekooperation mit Siemens AG zum Aufbau und zur Absicherung containerisierter Plattform- und Edge-Architekturen in industriellen IT/OT- und OT/ICS-Kontexten",
+          "Sicherheitsrisikoidentifikation und -bewertung für Container-Deployments, inklusive Threat Modelling und Security-by-Design-Ansätzen",
+          "Umsetzung von DevSecOps-Kontrollen in CI/CD, inklusive Policy-as-Code (OPA), Vulnerability Management, Security Compliance und automatisierten Security-Tests",
+          "Architektur- und Platform-Engineering für robuste containerisierte Anwendungen und resiliente cloud-native Bereitstellung",
+          "Konzeption und Umsetzung von Datenplattformen in der Finanz-, Energie- und Lebensmittelbranche, inklusive API-Integration und Datenpipelines",
+          "Moderation von Workshops mit mittelständischen und großen Unternehmen zur Anforderungsanalyse und datengetriebenen Prozessoptimierung",
+        ],
+      },
+      {
+        role: "Wissenschaftliche Hilfskraft",
+        org: "Fraunhofer IEM",
+        orgUrl: "https://www.iem.fraunhofer.de/",
+        location: "Paderborn, Deutschland",
+        period: "2018 – 2021",
+        note: "Forschungsgruppe: Industrial Data Analytics",
+        bullets: [
+          "Analyse großer Datenmengen (Betriebs- und Produktdaten) im industriellen Umfeld",
+          "Einsatz von Machine Learning und künstlicher Intelligenz für Unternehmen",
+          "Entwicklung von Python-Tools und webbasierten Prototypen",
+        ],
+      },
+      {
+        role: "Anwendungsentwickler",
+        org: "Lenze Group",
+        orgUrl: "https://www.lenze.com/en-de/",
+        location: "Hameln, Deutschland",
+        period: "2016 – 2017",
+        note: "Fachbereich: Anwendungsentwicklung für Produktionssysteme",
+        bullets: [
+          "Entwicklung und Wartung von Shopfloor-Systemen in der Produktion",
+          "Unterstützung von Einkauf und Materialplanung in SAP",
+          "ABAP-Programmierung im Kontext des Materialmanagements",
+        ],
+      },
+      {
+        role: "Dualer Student Wirtschaftsinformatik",
+        org: "Lenze Group",
+        orgUrl: "https://www.lenze.com/en-de/",
+        location: "Hameln, Deutschland",
+        period: "2013 – 2016",
+        note: "Fachbereich: Anwendungsentwicklung für SAP-Systeme",
+        bullets: [
+          "Unterstützung des SAP-Bestandsmanagements",
+          "Umsetzung von Business-Intelligence-Schnittstellen mit Java-Frameworks",
+        ],
+      },
+    ]
+  : [
+      {
+        role: "Research Associate",
+        org: "fortiss GmbH – Research Institute of the Free State of Bavaria",
+        orgUrl: "https://www.fortiss.org/",
+        location: "Munich, Germany",
+        period: "2021 – present",
+        note: "Research group: Platform Engineering",
+        bullets: [
+          "Multi-year industry collaboration with Siemens AG to build and secure containerised platform and edge architectures in industrial and OT/ICS contexts",
+          "Security risk identification and assessment for container deployments, including threat modelling and secure-by-design approaches",
+          "Implementation of DevSecOps controls in CI/CD, including Policy-as-Code (OPA), vulnerability management, security compliance, and automated security testing",
+          "Architecture and platform engineering for robust containerised applications and resilient cloud-native delivery",
+          "Design and implementation of data platforms in the finance, energy, and food sectors, including API integration and data pipelines",
+          "Facilitation of workshops with SMEs and large enterprises on requirements analysis and data-driven process optimisation",
+        ],
+      },
+      {
+        role: "Student Research Assistant",
+        org: "Fraunhofer IEM",
+        orgUrl: "https://www.iem.fraunhofer.de/",
+        location: "Paderborn, Germany",
+        period: "2018 – 2021",
+        note: "Research group: Industrial Data Analytics",
+        bullets: [
+          "Analysis of big data (operational and product data) in industry",
+          "Application of machine learning and artificial intelligence for businesses",
+          "Development of Python tools and web-based prototypes",
+        ],
+      },
+      {
+        role: "Application Developer",
+        org: "Lenze Group",
+        orgUrl: "https://www.lenze.com/en-de/",
+        location: "Hameln, Germany",
+        period: "2016 – 2017",
+        note: "Department: Application development for production systems",
+        bullets: [
+          "Development and maintenance of production shopfloor systems",
+          "Support for purchasing and materials planning in SAP",
+          "ABAP programming in the context of materials management",
+        ],
+      },
+      {
+        role: "Dual Study Programme in Information Systems",
+        org: "Lenze Group",
+        orgUrl: "https://www.lenze.com/en-de/",
+        location: "Hameln, Germany",
+        period: "2013 – 2016",
+        note: "Department: Application development for SAP systems",
+        bullets: [
+          "Support for SAP inventory management",
+          "Implementation of Business Intelligence interfaces using Java frameworks",
+        ],
+      },
+    ];
+
+const sectionTitle = isDE ? "Berufserfahrung" : "Work Experience";
 ---
 
 <section id="experience" class="py-20 scroll-mt-16 bg-gray-50">
   <div class="max-w-4xl mx-auto px-4 sm:px-6">
     <h2 class="text-2xl font-bold text-gray-900 mb-12 pl-4 border-l-4 border-blue-600">
-      Work Experience
+      {sectionTitle}
     </h2>
 
     <div class="space-y-0">
@@ -89,7 +158,7 @@ const entries: ExperienceEntry[] = [
                   <h3 class="font-semibold text-gray-900">{entry.role}</h3>
                   <p class="text-sm text-gray-600">
                     {entry.orgUrl ? (
-                      <a href={entry.orgUrl} target="_blank" rel="noopener noreferrer" class="hover:text-blue-600 transition-colors">{entry.org}</a>
+                      <a href={entry.orgUrl} target="_blank" rel="noopener noreferrer" class="hover:text-blue-600 transition-colors">{entry.org}<ExternalLinkIcon /></a>
                     ) : entry.org}
                   </p>
                   <p class="text-xs text-gray-500 mt-0.5">

@@ -1,4 +1,13 @@
 ---
+import ExternalLinkIcon from "./ExternalLinkIcon.astro";
+
+interface Props {
+  lang?: "en" | "de";
+}
+
+const { lang = "en" } = Astro.props;
+const isDE = lang === "de";
+
 type Detail = string | { text: string; url: string };
 
 interface EducationEntry {
@@ -10,54 +19,102 @@ interface EducationEntry {
   details?: Detail[];
 }
 
-const entries: EducationEntry[] = [
-  {
-    degree: "Dr. rer. nat. / PhD in Computer Science",
-    institution: "Technical University of Munich",
-    institutionUrl: "https://www.tum.de/",
-    location: "Munich, Germany",
-    period: "2023 – present",
-    details: [
-      "Doctoral topic: \u201CKnowledge Augmentation of Security Risk Identification for Container Deployments in Operational Technology Contexts\u201D",
-      { text: "Chair of Software and Systems Engineering, Prof. Pretschner", url: "https://www.cs.cit.tum.de/sse/startseite/" },
-    ],
-  },
-  {
-    degree: "M.Sc. in Information Systems",
-    institution: "University of Paderborn",
-    institutionUrl: "https://www.uni-paderborn.de/",
-    location: "Paderborn, Germany",
-    period: "2017 – 2020",
-    details: [
-      "Master\u2019s thesis: \u201CMethodology for Introducing AI-based Production Planning Systems in Enterprises\u201D",
-      "Study abroad (Winter 2019) at the University of Eastern Finland, Kuopio",
-    ],
-  },
-  {
-    degree: "B.Sc. in Information Systems",
-    institution: "Hochschule Weserbergland",
-    institutionUrl: "https://www.hsw-hameln.de/",
-    location: "Hameln, Germany",
-    period: "2013 – 2016",
-    details: [
-      "Dual study programme with a focus on application development",
-      "Bachelor\u2019s thesis: \u201CAnalysis and Evaluation of Self-Service Business Intelligence Tools for Reporting within the Lenze Group\u201D",
-    ],
-  },
-  {
-    degree: "General Higher Education Entrance Qualification (Abitur)",
-    institution: "Städtisches Gymnasium Löhne",
-    institutionUrl: "https://www.loehne.de/Gymnasium/",
-    location: "Löhne, Germany",
-    period: "2005 – 2013",
-  },
-];
+const entries: EducationEntry[] = isDE
+  ? [
+      {
+        degree: "Dr. rer. nat. Informatik",
+        institution: "Technische Universität München",
+        institutionUrl: "https://www.tum.de/",
+        location: "München, Deutschland",
+        period: "2023 – heute",
+        details: [
+          "Thema: \u201EKnowledge Augmentation of Security Risk Identification for Container Deployments in OT Contexts\u201C",
+          {
+            text: "Lehrstuhl für Software and Systems Engineering, Prof. Pretschner",
+            url: "https://www.cs.cit.tum.de/sse/startseite/",
+          },
+        ],
+      },
+      {
+        degree: "M.Sc. Wirtschaftsinformatik",
+        institution: "Universität Paderborn",
+        institutionUrl: "https://www.uni-paderborn.de/",
+        location: "Paderborn, Deutschland",
+        period: "2017 – 2020",
+        details: [
+          "Masterarbeit: \u201EMethodik für die Einführung KI-basierter Produktionsplanungs-Systeme in Unternehmen\u201C",
+          "Auslandssemester (Winter 2019) an der University of Eastern Finland, Kuopio",
+        ],
+      },
+      {
+        degree: "B.Sc. Wirtschaftsinformatik",
+        institution: "Hochschule Weserbergland",
+        institutionUrl: "https://www.hsw-hameln.de/",
+        location: "Hameln, Deutschland",
+        period: "2013 – 2016",
+        details: [
+          "Bachelorarbeit: \u201EAnalyse und Bewertung von Self Service Business Intelligence Tools für das Reporting innerhalb der Lenze Gruppe\u201C",
+          "Duales Studium mit Fokus auf Anwendungsentwicklung",
+        ],
+      },
+      {
+        degree: "Allgemeine Hochschulreife (Abitur)",
+        institution: "Städtisches Gymnasium Löhne",
+        institutionUrl: "https://www.loehne.de/Gymnasium/",
+        location: "Löhne, Deutschland",
+        period: "2005 – 2013",
+      },
+    ]
+  : [
+      {
+        degree: "Dr. rer. nat. / PhD in Computer Science",
+        institution: "Technical University of Munich",
+        institutionUrl: "https://www.tum.de/",
+        location: "Munich, Germany",
+        period: "2023 – present",
+        details: [
+          "Doctoral topic: \u201CKnowledge Augmentation of Security Risk Identification for Container Deployments in Operational Technology Contexts\u201D",
+          { text: "Chair of Software and Systems Engineering, Prof. Pretschner", url: "https://www.cs.cit.tum.de/sse/startseite/" },
+        ],
+      },
+      {
+        degree: "M.Sc. in Information Systems",
+        institution: "University of Paderborn",
+        institutionUrl: "https://www.uni-paderborn.de/",
+        location: "Paderborn, Germany",
+        period: "2017 – 2020",
+        details: [
+          "Master\u2019s thesis: \u201CMethodology for Introducing AI-based Production Planning Systems in Enterprises\u201D",
+          "Study abroad (Winter 2019) at the University of Eastern Finland, Kuopio",
+        ],
+      },
+      {
+        degree: "B.Sc. in Information Systems",
+        institution: "Hochschule Weserbergland",
+        institutionUrl: "https://www.hsw-hameln.de/",
+        location: "Hameln, Germany",
+        period: "2013 – 2016",
+        details: [
+          "Bachelor’s thesis: “Analysis and Evaluation of Self-Service Business Intelligence Tools for Reporting within the Lenze Group”",
+          "Dual study programme with a focus on application development",
+        ],
+      },
+      {
+        degree: "General Higher Education Entrance Qualification (Abitur)",
+        institution: "Städtisches Gymnasium Löhne",
+        institutionUrl: "https://www.loehne.de/Gymnasium/",
+        location: "Löhne, Germany",
+        period: "2005 – 2013",
+      },
+    ];
+
+const sectionTitle = isDE ? "Ausbildung" : "Education";
 ---
 
 <section id="education" class="py-20 scroll-mt-16">
   <div class="max-w-4xl mx-auto px-4 sm:px-6">
     <h2 class="text-2xl font-bold text-gray-900 mb-12 pl-4 border-l-4 border-blue-600">
-      Education
+      {sectionTitle}
     </h2>
 
     <div class="space-y-0">
@@ -77,7 +134,7 @@ const entries: EducationEntry[] = [
                   <h3 class="font-semibold text-gray-900">{entry.degree}</h3>
                   <p class="text-sm text-gray-600">
                     {entry.institutionUrl ? (
-                      <a href={entry.institutionUrl} target="_blank" rel="noopener noreferrer" class="hover:text-blue-600 transition-colors">{entry.institution}</a>
+                      <a href={entry.institutionUrl} target="_blank" rel="noopener noreferrer" class="hover:text-blue-600 transition-colors">{entry.institution}<ExternalLinkIcon /></a>
                     ) : entry.institution}
                   </p>
                   <p class="text-xs text-gray-500 mt-0.5">{entry.location}</p>
@@ -90,7 +147,7 @@ const entries: EducationEntry[] = [
                     <li class="flex gap-2.5 text-sm text-gray-600">
                       <span class="mt-2 w-1.5 h-1.5 rounded-full bg-gray-400 shrink-0" />
                       {typeof d === "string" ? d : (
-                        <a href={d.url} target="_blank" rel="noopener noreferrer" class="hover:text-blue-600 transition-colors">{d.text}</a>
+                        <a href={d.url} target="_blank" rel="noopener noreferrer" class="hover:text-blue-600 transition-colors">{d.text}<ExternalLinkIcon /></a>
                       )}
                     </li>
                   ))}

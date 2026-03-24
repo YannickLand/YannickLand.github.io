@@ -1,19 +1,45 @@
 ---
+import ExternalLinkIcon from "../components/ExternalLinkIcon.astro";
+
 interface Props {
   title?: string;
   description?: string;
+  lang?: "en" | "de";
 }
 
 const {
   title = "Yannick Landeck – Software Engineer & PhD Researcher",
   description = "Personal website of Yannick Landeck, software engineer and PhD researcher specialising in DevOps, container security, and platform engineering.",
+  lang = "en",
 } = Astro.props;
+
+const isDE = lang === "de";
+const basePath = isDE ? "/de" : "";
+const switchHref = isDE ? "/" : "/de";
+const switchLabel = isDE ? "EN" : "DE";
+const skipToContent = isDE ? "Zum Inhalt springen" : "Skip to content";
+
+const nav = {
+  about: isDE ? "Über mich" : "About",
+  experience: isDE ? "Berufserfahrung" : "Experience",
+  education: isDE ? "Ausbildung" : "Education",
+  skills: isDE ? "Kenntnisse" : "Skills",
+  publications: isDE ? "Publikationen" : "Publications",
+};
+
+const footer = {
+  email: isDE ? "E-Mail" : "Email",
+};
+
+const pageUrl = isDE
+  ? "https://yannickland.github.io/de/"
+  : "https://yannickland.github.io/";
 
 import "../styles/global.css";
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -24,7 +50,7 @@ import "../styles/global.css";
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://yannickland.github.io" />
+    <meta property="og:url" content={pageUrl} />
     <meta property="og:image" content="https://yannickland.github.io/avatar.jpg" />
 
     <!-- Favicon -->
@@ -45,14 +71,14 @@ import "../styles/global.css";
       href="#main"
       class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-blue-600 focus:text-white focus:px-4 focus:py-2 focus:rounded"
     >
-      Skip to content
+      {skipToContent}
     </a>
 
     <!-- Navbar -->
     <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-gray-100">
       <div class="max-w-4xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16">
         <a
-          href="/#about"
+          href={`${basePath}/#about`}
           class="font-semibold text-gray-900 hover:text-blue-600 transition-colors"
         >
           Yannick Landeck
@@ -60,12 +86,20 @@ import "../styles/global.css";
 
         <!-- Desktop nav -->
         <nav class="hidden sm:flex items-center gap-6 text-sm text-gray-500">
-          <a href="/#about" class="hover:text-blue-600 transition-colors">About</a>
-          <a href="/#experience" class="hover:text-blue-600 transition-colors">Experience</a>
-          <a href="/#education" class="hover:text-blue-600 transition-colors">Education</a>
-          <a href="/#skills" class="hover:text-blue-600 transition-colors">Skills</a>
-          <a href="/#publications" class="hover:text-blue-600 transition-colors">Publications</a>
+          <a href={`${basePath}/#about`} class="hover:text-blue-600 transition-colors">{nav.about}</a>
+          <a href={`${basePath}/#experience`} class="hover:text-blue-600 transition-colors">{nav.experience}</a>
+          <a href={`${basePath}/#education`} class="hover:text-blue-600 transition-colors">{nav.education}</a>
+          <a href={`${basePath}/#skills`} class="hover:text-blue-600 transition-colors">{nav.skills}</a>
+          <a href={`${basePath}/#publications`} class="hover:text-blue-600 transition-colors">{nav.publications}</a>
         </nav>
+
+        <a
+          href={switchHref}
+          class="hidden sm:inline-flex items-center rounded-md border border-gray-200 px-2.5 py-1 text-xs font-semibold text-gray-600 hover:text-blue-600 hover:border-blue-200 transition-colors"
+          aria-label={isDE ? "Switch to English" : "Zur deutschen Version wechseln"}
+        >
+          {switchLabel}
+        </a>
 
         <!-- Mobile menu button -->
         <button
@@ -102,11 +136,12 @@ import "../styles/global.css";
       <!-- Mobile menu -->
       <div id="mobile-menu" class="hidden sm:hidden bg-white border-t border-gray-100">
         <nav class="max-w-4xl mx-auto px-4 py-4 flex flex-col gap-3 text-sm text-gray-600">
-          <a href="/#about" class="py-1 hover:text-blue-600 transition-colors">About</a>
-          <a href="/#experience" class="py-1 hover:text-blue-600 transition-colors">Experience</a>
-          <a href="/#education" class="py-1 hover:text-blue-600 transition-colors">Education</a>
-          <a href="/#skills" class="py-1 hover:text-blue-600 transition-colors">Skills</a>
-          <a href="/#publications" class="py-1 hover:text-blue-600 transition-colors">Publications</a>
+          <a href={switchHref} class="py-1 font-semibold hover:text-blue-600 transition-colors">{switchLabel}</a>
+          <a href={`${basePath}/#about`} class="py-1 hover:text-blue-600 transition-colors">{nav.about}</a>
+          <a href={`${basePath}/#experience`} class="py-1 hover:text-blue-600 transition-colors">{nav.experience}</a>
+          <a href={`${basePath}/#education`} class="py-1 hover:text-blue-600 transition-colors">{nav.education}</a>
+          <a href={`${basePath}/#skills`} class="py-1 hover:text-blue-600 transition-colors">{nav.skills}</a>
+          <a href={`${basePath}/#publications`} class="py-1 hover:text-blue-600 transition-colors">{nav.publications}</a>
         </nav>
       </div>
     </header>
@@ -126,15 +161,15 @@ import "../styles/global.css";
             href="https://www.linkedin.com/in/yannick-landeck-a58a2b206"
             target="_blank"
             rel="noopener noreferrer"
-            class="hover:text-blue-600 transition-colors">LinkedIn</a
+            class="hover:text-blue-600 transition-colors">LinkedIn<ExternalLinkIcon /></a
           >
           <a
             href="https://www.researchgate.net/profile/Yannick-Landeck"
             target="_blank"
             rel="noopener noreferrer"
-            class="hover:text-blue-600 transition-colors">ResearchGate</a
+            class="hover:text-blue-600 transition-colors">ResearchGate<ExternalLinkIcon /></a
           >
-          <a id="footer-email" href="#" class="hover:text-blue-600 transition-colors">Email</a>
+          <a id="footer-email" href="#" class="hover:text-blue-600 transition-colors">{footer.email}</a>
         </div>
       </div>
     </footer>

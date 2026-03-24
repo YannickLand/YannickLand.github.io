@@ -4,65 +4,183 @@ interface SkillGroup {
   items: string[];
 }
 
-const groups: SkillGroup[] = [
-  {
-    label: "Technical",
-    items: [
-      "Docker",
-      "Kubernetes",
-      "Python",
-      "Go",
-      "JavaScript",
-      "Java",
-      "C#",
-      "Git",
-      "Databases (e.g. MySQL)",
-      "Web servers (e.g. nginx, Flask)",
-      "HTML / CSS",
-      "Ontologies & Knowledge Graphs (RDF/OWL, SPARQL)",
-      "Unity",
-      "SAP ABAP",
-      "Bash",
-      "Linux",
-      "Windows",
-      "LaTeX",
-      "Microsoft Office",
-    ],
-  },
-  {
-    label: "Methodological",
-    items: [
-      "DevOps",
-      "Platform Engineering",
-      "CI/CD",
-      "Container Security",
-      "DevSecOps",
-      "Knowledge Representation",
-      "Data Science",
-      "Data-driven Decision-making",
-      "Agentic AI Concepts",
-      "LLM Integration Methods",
-      "Workshop Facilitation",
-      "Presentation Skills",
-    ],
-  },
-  {
-    label: "Teaching",
-    items: [
-      "Supervision of Bachelor's & Master's theses in Software Engineering and Security (TU Munich)",
-      "Supervision of a programming lab on Agentic AI Systems (TU Munich)",
-    ],
-  },
-  {
-    label: "Languages",
-    items: ["German (native)", "English (C2)", "Spanish (A2)", "French (A1)"],
-  },
-];
+interface Props {
+  lang?: "en" | "de";
+}
+
+const { lang = "en" } = Astro.props;
+const isDE = lang === "de";
+
+const groups: SkillGroup[] = isDE
+  ? [
+      {
+        label: "Security & DevSecOps",
+        items: [
+          "DevSecOps",
+          "Container Security",
+          "OT/ICS Security",
+          "Secure-by-Design",
+          "Threat Modelling",
+          "Security-Risikoanalyse und -bewertung",
+          "Policy-as-Code (OPA)",
+          "Vulnerability Management",
+          "Security Compliance",
+          "Supply Chain Security (SBOM, Artifact Signing, Build Provenance)",
+          "Zero Trust",
+          "Netzwerksegmentierung",
+          "Security Design Reviews",
+          "SLSA",
+        ],
+      },
+      {
+        label: "Architektur & Platform Engineering",
+        items: [
+          "Softwarearchitektur",
+          "Verteilte Systeme",
+          "API- und Integrationsdesign",
+          "Qualitätsgetriebene Architekturmuster",
+          "Platform Engineering",
+          "Containerisierte Plattformen",
+          "Cloud-native Plattformbetrieb",
+          "Deployment-Orchestrierung",
+          "Resiliente Umsetzung",
+        ],
+      },
+      {
+        label: "Plattformen, Sprachen & Tooling",
+        items: [
+          "Docker",
+          "Kubernetes",
+          "Linux",
+          "Windows",
+          "Git",
+          "CI/CD-Pipelines",
+          "Infrastructure as Code",
+          "Python",
+          "Go",
+          "Java",
+          "JavaScript",
+          "C#",
+          "Datenbanken (z. B. MySQL)",
+          "Webserver und Backends (z. B. nginx, Flask)",
+          "Bash",
+          "Ontologien und Wissensgraphen (RDF/OWL, SPARQL)",
+        ],
+      },
+      {
+        label: "Lieferung, Methoden & Zusammenarbeit",
+        items: [
+          "DevOps",
+          "Workshop-Moderation",
+          "Strukturierte Anforderungsanalyse",
+          "Cross-funktionale Zusammenarbeit",
+          "Datengetriebene Entscheidungsfindung",
+          "Technische Dokumentation",
+          "Wissenstransfer",
+          "Praxisorientierte Forschung",
+          "Präsentationstechniken",
+        ],
+      },
+      {
+        label: "Lehre & Betreuung",
+        items: [
+          "Studierendenprojekte sowie Bachelor- und Masterarbeiten (TU München)",
+          "Programmierpraktikum zu agentenbasierten KI-Systemen (TU München)",
+        ],
+      },
+      {
+        label: "Sprachen",
+        items: ["Deutsch (Muttersprache)", "Englisch (C2)", "Spanisch (A2)", "Französisch (A1)"],
+      },
+    ]
+  : [
+      {
+        label: "Security & DevSecOps",
+        items: [
+          "DevSecOps",
+          "Container Security",
+          "OT/ICS Security",
+          "Secure-by-Design",
+          "Threat Modelling",
+          "Security Risk Analysis and Assessment",
+          "Policy-as-Code (OPA)",
+          "Vulnerability Management",
+          "Security Compliance",
+          "Supply Chain Security (SBOM, Artifact Signing, Build Provenance)",
+          "Zero Trust",
+          "Network Segmentation",
+          "Security Design Reviews",
+          "SLSA",
+        ],
+      },
+      {
+        label: "Architecture & Platform Engineering",
+        items: [
+          "Software Architecture",
+          "Distributed Systems",
+          "API and Integration Design",
+          "Quality-Driven Architecture Patterns",
+          "Platform Engineering",
+          "Containerised Platforms",
+          "Cloud-Native Platform Operations",
+          "Deployment Orchestration",
+          "Resilient Delivery",
+        ],
+      },
+      {
+        label: "Platforms, Languages & Tooling",
+        items: [
+          "Docker",
+          "Kubernetes",
+          "Linux",
+          "Windows",
+          "Git",
+          "CI/CD Pipelines",
+          "Infrastructure as Code",
+          "Python",
+          "Go",
+          "Java",
+          "JavaScript",
+          "C#",
+          "Databases (e.g. MySQL)",
+          "Web Servers and Backends (e.g. nginx, Flask)",
+          "Bash",
+          "Ontologies and Knowledge Graphs (RDF/OWL, SPARQL)",
+        ],
+      },
+      {
+        label: "Delivery, Methods & Collaboration",
+        items: [
+          "DevOps",
+          "Workshop Facilitation",
+          "Structured Requirements Analysis",
+          "Cross-Functional Collaboration",
+          "Data-Driven Decision-Making",
+          "Technical Documentation",
+          "Knowledge Transfer",
+          "Applied Research",
+          "Presentation Skills",
+        ],
+      },
+      {
+        label: "Teaching & Supervision",
+        items: [
+          "Student projects and Bachelor's and Master's theses (TU Munich)",
+          "Programming lab on agentic AI systems (TU Munich)",
+        ],
+      },
+      {
+        label: "Languages",
+        items: ["German (native)", "English (C2)", "Spanish (A2)", "French (A1)"],
+      },
+    ];
+
+const sectionTitle = isDE ? "Kenntnisse" : "Skills";
 ---
 
 <section id="skills" class="py-20 scroll-mt-16 bg-gray-50">
   <div class="max-w-4xl mx-auto px-4 sm:px-6">
-    <h2 class="text-2xl font-bold text-gray-900 mb-12 pl-4 border-l-4 border-blue-600">Skills</h2>
+    <h2 class="text-2xl font-bold text-gray-900 mb-12 pl-4 border-l-4 border-blue-600">{sectionTitle}</h2>
 
     <div class="space-y-10">
       {

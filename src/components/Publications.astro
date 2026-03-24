@@ -1,5 +1,13 @@
 ---
+import ExternalLinkIcon from "./ExternalLinkIcon.astro";
 import { publications, type Publication } from "../data/publications";
+
+interface Props {
+  lang?: "en" | "de";
+}
+
+const { lang = "en" } = Astro.props;
+const isDE = lang === "de";
 
 // Group by year, descending
 const grouped = publications.reduce(
@@ -12,12 +20,17 @@ const grouped = publications.reduce(
 const years = Object.keys(grouped)
   .map(Number)
   .sort((a, b) => b - a);
+
+const sectionTitle = isDE ? "Publikationen" : "Publications";
+const preprintLabel = isDE ? "Preprint" : "Preprint";
+const seeAlsoPrefix = isDE ? "Siehe auch mein" : "See also my";
+const rgProfileLabel = isDE ? "ResearchGate-Profil" : "ResearchGate profile";
 ---
 
 <section id="publications" class="py-20 scroll-mt-16">
   <div class="max-w-4xl mx-auto px-4 sm:px-6">
     <h2 class="text-2xl font-bold text-gray-900 mb-12 pl-4 border-l-4 border-blue-600">
-      Publications
+      {sectionTitle}
     </h2>
 
     <div class="space-y-10">
@@ -41,21 +54,7 @@ const years = Object.keys(grouped)
                           class="hover:text-blue-600 transition-colors"
                         >
                           {pub.title}
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="inline-block ml-1 w-3 h-3 opacity-50"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                            stroke-width="2"
-                            aria-hidden="true"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                            />
-                          </svg>
+                          <ExternalLinkIcon />
                         </a>
                       ) : (
                         pub.title
@@ -72,8 +71,8 @@ const years = Object.keys(grouped)
                     )}
                     {pub.preprint && (
                       <p class="mt-1 text-xs text-gray-400 italic">
-                        Preprint:{" "}
-                        <a href={pub.preprint} target="_blank" rel="noopener noreferrer" class="underline hover:text-blue-500 transition-colors">{pub.preprint}</a>
+                        {preprintLabel}:{" "}
+                        <a href={pub.preprint} target="_blank" rel="noopener noreferrer" class="underline hover:text-blue-500 transition-colors">{pub.preprint}<ExternalLinkIcon /></a>
                       </p>
                     )}
                   </article>
@@ -86,14 +85,14 @@ const years = Object.keys(grouped)
     </div>
 
     <p class="mt-10 text-sm text-gray-500">
-      See also my{" "}
+      {seeAlsoPrefix}{" "}
       <a
         href="https://www.researchgate.net/profile/Yannick-Landeck"
         target="_blank"
         rel="noopener noreferrer"
         class="text-blue-600 hover:underline"
       >
-        ResearchGate profile
+        {rgProfileLabel}<ExternalLinkIcon />
       </a>.
     </p>
   </div>
