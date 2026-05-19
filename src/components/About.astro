@@ -16,10 +16,6 @@ const focusLine = isDE
   ? "DevSecOps | Security-Risikobewertung | Softwarearchitektur | Agentic AI Engineering"
   : "DevSecOps | Security Risk Assessment | Software Architecture | Agentic AI Engineering";
 
-const openToWork = isDE
-  ? "Offen für neue Positionen · Verfügbar ab Juli 2026"
-  : "Open to new positions · Available from July 2026";
-
 const aboutText = isDE
   ? "Ich bin Softwareingenieur mit mehr als zehn Jahren praktischer Erfahrung und schließe aktuell meine Promotion an der TU München ab. Mein Schwerpunkt liegt auf DevSecOps, Container Security und Security-Risikobewertung in industriellen IT/OT-Umfeldern. Zusätzlich bringe ich fundierte Erfahrung in Softwarearchitektur, Platform Engineering und robuster Umsetzung containerisierter sowie cloud-nativer Systeme mit. Ich untersuche vermehrt, wie KI- und LLM-basierte Methoden die Security-Risikobewertung und weitere Engineering-Prozesse unterstützen können. Ich arbeite gerne an der Schnittstelle von Entwicklung, Betrieb, Security und Architektur und überführe komplexe Anforderungen in pragmatische, umsetzbare Lösungen. In meiner Freizeit spiele ich Snooker und gehe gerne in die Berge."
   : "I am a software engineer with more than ten years of practical experience, currently completing my PhD at TU Munich. My focus is on DevSecOps, container security, and security risk assessment in industrial and OT contexts. I also bring strong experience in software architecture, platform engineering, and resilient delivery of containerised and cloud-native systems. I am increasingly exploring how AI- and LLM-based methods can support security risk assessment and broader engineering processes. I enjoy working at the intersection of development, operations, security, and architecture, translating complex requirements into pragmatic, implementable solutions. Outside of work, I play snooker and enjoy hiking in the mountains.";
@@ -41,15 +37,6 @@ const emailLabel = isDE ? "E-Mail" : "Email";
         <p class="mt-2 text-sm text-gray-600 font-medium">
           {focusLine}
         </p>
-
-        <!-- Open-to-work badge -->
-        <div class="mt-3 inline-flex items-center gap-2 rounded-full bg-green-50 border border-green-200 px-3 py-1">
-          <span class="relative flex h-2 w-2">
-            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-            <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-          </span>
-          <span class="text-sm font-medium text-green-700">{openToWork}</span>
-        </div>
 
         <p class="mt-5 text-gray-600 leading-relaxed max-w-xl">
           {aboutText}
