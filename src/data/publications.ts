@@ -16,7 +16,7 @@ export interface Publication {
 export const publications: Publication[] = [
   {
     title:
-      "An Ontology-Based Approach to Security Risk Identification for Container Deployments in OT Contexts",
+      "An Ontology-Based Approach to Security Risk Identification foryannicklandeck@online.de Container Deployments in OT Contexts",
     year: 2026,
     month: "Apr",
     venue:
