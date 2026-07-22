@@ -24,8 +24,6 @@ export const publications: Publication[] = [
     publisher: "ACM",
     location: "Rio de Janeiro, Brasil",
     doi: "10.1145/3786583.3786875",
-    note: "DOI reserved; paper forthcoming",
-    preprint: "https://arxiv.org/abs/2601.04010",
     authors: "Landeck, Y.; Balta, D.; Wimmer, M.; Knierim, C.",
   },
   {
